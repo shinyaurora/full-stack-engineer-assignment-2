@@ -1,0 +1,10 @@
+{
+    "agents": [
+        {
+            "id": "f3fe",
+            "name": "Jack",
+            "email": "jack@gmail.com",
+            "status": "active"
+        }
+    ]
+}
