@@ -1,3 +1,10 @@
 {
-  "agents": []
+  "agents": [
+    {
+      "id": "53c9",
+      "name": "Test",
+      "email": "Test@gmail.com",
+      "status": "active"
+    }
+  ]
 }
