@@ -9,7 +9,7 @@ import {
 import { AgentType } from "@/types/Agent";
 
 //Fetch Agent List
-export const fetchAgentAsync = createAsyncThunk("agents/fetchAgents", async () => {
+export const fetchAgentsAsync = createAsyncThunk("agents/fetchAgents", async () => {
     return await getAgents();
 });
 
@@ -48,15 +48,15 @@ const agetnsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchAgentAsync.pending, state => {
+            .addCase(fetchAgentsAsync.pending, state => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchAgentAsync.fulfilled, (state, action) => {
+            .addCase(fetchAgentsAsync.fulfilled, (state, action) => {
                 state.list = action.payload;
                 state.loading = false;
             })
-            .addCase(fetchAgentAsync.rejected, (state, action) => {
+            .addCase(fetchAgentsAsync.rejected, (state, action) => {
                 state.error = action.error.message || "Failed to fetch agent list";
             })
             //Add agent to redux store

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Agents from "./pages/Agents";
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
           <Routes>
-            <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/" element={<Agents />} />
             <Route path="/agents/:id" element={<h1>Detail Page</h1>}></Route>
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
