@@ -9,6 +9,17 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { PlusIcon, MoreVerticalIcon, TrashIcon, EditIcon } from "lucide-react";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -56,7 +67,7 @@ export default function Agents() {
 
     const handleRowClick = (id: string) => {
         navigate(`/agents/${id}`);
-    } 
+    }
 
     useEffect(() => {
         dispatch(fetchAgentsAsync());
@@ -65,7 +76,7 @@ export default function Agents() {
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Error: {error}</p>
 
-    const filteredAgentList = agents.filter((agent) => 
+    const filteredAgentList = agents.filter((agent) =>
         agent.name.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase()) ||
         agent.email.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase())
     )
@@ -121,12 +132,28 @@ export default function Agents() {
                                                                 </Button>
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem className="flex items-center">
-                                                                <Button variant="ghost" className="w-full justify-start" onClick={(e) => handleDelete(e, item.id)}>
-                                                                    <TrashIcon />
-                                                                    <span>
-                                                                        Delete
-                                                                    </span>
-                                                                </Button>
+                                                                <AlertDialog>
+                                                                    <AlertDialogTrigger asChild>
+                                                                        <Button variant="ghost" className="w-full justify-start" onClick={ev => ev.stopPropagation()}>
+                                                                            <TrashIcon />
+                                                                            <span>
+                                                                                Delete
+                                                                            </span>
+                                                                        </Button>
+                                                                    </AlertDialogTrigger>
+                                                                    <AlertDialogContent>
+                                                                        <AlertDialogHeader>
+                                                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                                            <AlertDialogDescription>
+                                                                                This action cannot be undone. This will permanently delete your data from database.
+                                                                            </AlertDialogDescription>
+                                                                        </AlertDialogHeader>
+                                                                        <AlertDialogFooter>
+                                                                            <AlertDialogCancel onClick={e => e.stopPropagation()}>Cancel</AlertDialogCancel>
+                                                                            <AlertDialogAction onClick={(e) => handleDelete(e, item.id)}>Continue</AlertDialogAction>
+                                                                        </AlertDialogFooter>
+                                                                    </AlertDialogContent>
+                                                                </AlertDialog>
                                                             </DropdownMenuItem>
                                                         </DropdownMenuGroup>
                                                     </DropdownMenuContent>
