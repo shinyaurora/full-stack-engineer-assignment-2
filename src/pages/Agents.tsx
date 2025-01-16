@@ -141,7 +141,7 @@ export default function Agents() {
                                                                             </span>
                                                                         </Button>
                                                                     </AlertDialogTrigger>
-                                                                    <AlertDialogContent>
+                                                                    <AlertDialogContent onClick={e => e.stopPropagation()}>
                                                                         <AlertDialogHeader>
                                                                             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                                                             <AlertDialogDescription>
